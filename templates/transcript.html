@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transcript</title>
+</head>
+<body>
+    <h1>Transcript</h1>
+    <p>{{ transcript }}</p>
+    <p>Detected Language: {{ detected_language }}</p>
+    <button onclick="listenToTranscript('{{ transcript }}')">Listen to Transcript</button>
+
+    <script>
+        function listenToTranscript(transcript) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/listen?transcript=" + encodeURIComponent(transcript), true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

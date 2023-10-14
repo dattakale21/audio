@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App</title>
+</head>
+<body>
+    <form action="/transcribe" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="song" accept=".mp3">
+        <br><br>
+        <label for="language">Select Language:</label>
+        <select name="language" id="language">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="hi">Marathi</option>
+            <!-- Add more language options here -->
+        </select>
+        <br><br>
+        <input type="submit" value="Upload and Transcribe">
+    </form>
+</body>
+</html>
