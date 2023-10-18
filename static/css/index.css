@@ -264,19 +264,20 @@ footer h2 {
         font-size: 3rem;
     }
 
-    main p{
+    main p {
         font-size: 1.6rem;
     }
 
-    main h1{
+    main h1 {
         font-size: 1.6rem;
     }
-    html{
+
+    html {
         font-size: 110%;
     }
-  
 
-    header #logo{
+
+    header #logo {
         font-size: 1.7rem;
     }
 
@@ -290,8 +291,9 @@ footer h2 {
         margin: 1.6rem auto;
 
     }
-    footer{
-        padding:0.4rem 0;
+
+    footer {
+        padding: 0.4rem 0;
     }
 }
 
@@ -339,11 +341,41 @@ footer h2 {
 
 @media (max-width:383px) and (max-height:913px) {
 
-html{
-    font-size: 74%;
+    html {
+        font-size: 74%;
+    }
+
+    header #title {
+        margin-top: 11rem;
+    }
+
+    main p {
+        margin-top: 3rem;
+    }
+
+    form {
+        margin-top: 7rem;
+    }
 }
 
-header #title{
-    margin-top: 11rem;
+@media (max-width:362px) and (max-height:913px) {
+
+    html {
+        font-size: 70%;
+    }
 }
+
+@media (max-width:333px) and (max-height:913px) {
+
+    html {
+        font-size: 56%;
+    }
+
+    main p {
+        margin-top: 8rem;
+    }
+
+    form {
+        margin-top: 12rem;
+    }
 }

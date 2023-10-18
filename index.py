@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from langdetect import detect,detect_langs
+from langdetect import detect, detect_langs
 from googletrans import Translator, constants
 from googletrans import LANGUAGES
 from werkzeug.utils import secure_filename
@@ -71,9 +71,8 @@ language_codes = {
     "Urdu": "ur",
     "Vietnamese": "vi",
     "Welsh": "cy",
-    
 }
-          
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -116,7 +115,11 @@ def transcribe_audio():
                 detected_language = "Unknown Language"
             print("Detected language:", detected_language)
             print("Decoded Text:", decoded_text)
-            return render_template("transcribe.html", decoded_text=decoded_text, detected_language=detected_language)
+            return render_template(
+                "transcribe.html",
+                decoded_text=decoded_text,
+                detected_language=detected_language,
+            )
 
         elif decoded_text is not None:  # Check if the transcript exists
             return decoded_text
@@ -124,7 +127,6 @@ def transcribe_audio():
         else:
             print("Transcription not found or incorrect format.")
     # return render_template("tra.html")
-
 
 
 @app.route("/translate", methods=["GET", "POST"])
@@ -149,36 +151,41 @@ def translate_audio():
         audio_file.save(filename)
 
         with open(filename, "rb") as audio:
-                selected_language = request.form.get("language")
-                print(f"Selected Language: {selected_language}")
+            selected_language = request.form.get("language")
+            print(f"Selected Language: {selected_language}")
 
             # try:
-                response = openai.Audio.transcribe("whisper-1", audio)
-                if isinstance(response, dict) and "text" in response:
-                    decoded_text = response["text"]
-                    try:
-                        detected_language_code = detect_langs(decoded_text)[0].lang
-                        detected_language = LANGUAGES.get(detected_language_code, "Unknown")
-                        detected_language = detected_language.capitalize()
-                    except IndexError:
-                        detected_language = "Unknown Language"
-                    translator = Translator()
-                    translated_text = translator.translate(decoded_text, dest=selected_language).text
-                    print("Detected language:", detected_language)
-                    print("Decoded Text:", decoded_text)
-                    return render_template("translate.html", decoded_text=translated_text, detected_language=detected_language)
+            response = openai.Audio.transcribe("whisper-1", audio)
+            if isinstance(response, dict) and "text" in response:
+                decoded_text = response["text"]
+                try:
+                    detected_language_code = detect_langs(decoded_text)[0].lang
+                    detected_language = LANGUAGES.get(detected_language_code, "Unknown")
+                    detected_language = detected_language.capitalize()
+                except IndexError:
+                    detected_language = "Unknown Language"
+                translator = Translator()
+                translated_text = translator.translate(
+                    decoded_text, dest=selected_language
+                ).text
+                print("Detected language:", detected_language)
+                print("Decoded Text:", decoded_text)
+                return render_template(
+                    "translate.html",
+                    decoded_text=translated_text,
+                    detected_language=detected_language,
+                )
 
-                else:
-                    return "Transcription failed or returned no data."
+            else:
+                return "Transcription failed or returned no data."
 
             # except openai.error.OpenAIError as e:
             #     return f"OpenAI API error: {str(e)}"
             # except Exception as e:
             #     return f"Error: {str(e)}"
 
-                if selected_language not in language_codes.keys():
-                    return "Invalid language selected."
-
+            if selected_language not in language_codes.keys():
+                return "Invalid language selected."
 
 
 if __name__ == "__main__":
