@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Flask App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Audio Processing Tool</title>
+    <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
-    <form action="/transcribe" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="song" accept=".mp3">
-        <br><br>
-        <label for="language">Select Language:</label>
-        <select name="language" id="language">
-            <option value="en">English</option>
-            <option value="hi">Hindi</option>
-            <option value="hi">Marathi</option>
-            <!-- Add more language options here -->
-        </select>
-        <br><br>
-        <input type="submit" value="Upload and Transcribe">
-    </form>
+    <header>
+        <h1 id="title">Advanced Audio Analytics</h1>
+        <h1 id="logo">TransPro.</h1>
+    </header>
+    <main>
+        <h1>Welcome to the Intelligent Audio Processing tool.</h1>
+        <p>This powerful application allows you to transcribe and translate audio files seamlessly. Simply upload your file and select your preferred action below.</p>
+        <form action="/" method="post">
+            <input type="submit" name="transcribe" value="Convert Speech to Text">
+            <input type="submit" name="translate" value="Language Translation">
+        </form>
+    </main>
+
+        
+    <footer id="foot">
+        <h2>Copyright © 2023 Datta. All rights reserved | Designed by Datta</h2>
+    </footer>
+
 </body>
 </html>
