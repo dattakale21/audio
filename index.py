@@ -84,8 +84,11 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/transcribe", methods=["POST"])
+@app.route("/transcribe", methods=["GET","POST"])
 def transcribe_audio():
+ if request.method == "GET":
+        return render_template("transcribe.html")
+ elif request.method == "POST":
     audio_file = request.files["file"]
     if audio_file.filename.split(".")[-1] not in [
         "flac",
@@ -131,7 +134,9 @@ def transcribe_audio():
 
 @app.route("/translate", methods=["GET", "POST"])
 def translate_audio():
-    if request.method == "POST":
+    if request.method == "GET":
+        return render_template("translate.html")
+    elif request.method == "POST":
         audio_file = request.files["file"]
         if audio_file.filename.split(".")[-1] not in [
             "flac",
