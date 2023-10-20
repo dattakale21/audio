@@ -8,10 +8,18 @@ import os
 import openai
 import codecs
 from pprint import pprint
+from dotenv import load_dotenv
+from pathlib import Path
+
+# from flask_frozen import Freezer
 
 app = Flask(__name__)
+# freezer = Freezer(app)
 
-openai.api_key = "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"
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 language_codes = {
     "English": "en",
@@ -84,52 +92,54 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/transcribe", methods=["GET","POST"])
+@app.route("/transcribe", methods=["GET", "POST"])
 def transcribe_audio():
- if request.method == "GET":
+    if request.method == "GET":
         return render_template("transcribe.html")
- elif request.method == "POST":
-    audio_file = request.files["file"]
-    if audio_file.filename.split(".")[-1] not in [
-        "flac",
-        "m4a",
-        "mp3",
-        "mp4",
-        "mpeg",
-        "mpga",
-        "oga",
-        "ogg",
-        "wav",
-        "webm",
-    ]:
-        return "Invalid file format. Supported formats: flac, m4a, mp3, mp4, mpeg, mpga, oga, ogg, wav, webm"
+    elif request.method == "POST":
+        audio_file = request.files["file"]
+        if audio_file.filename.split(".")[-1] not in [
+            "flac",
+            "m4a",
+            "mp3",
+            "mp4",
+            "mpeg",
+            "mpga",
+            "oga",
+            "ogg",
+            "wav",
+            "webm",
+        ]:
+            return "Invalid file format. Supported formats: flac, m4a, mp3, mp4, mpeg, mpga, oga, ogg, wav, webm"
 
-    filename = secure_filename(audio_file.filename)  # Secure the filename before saving
-    audio_file.save(filename)
-    with open(filename, "rb") as audio:
-        transcript = openai.Audio.transcribe("whisper-1", audio)
-        if isinstance(transcript, dict) and "text" in transcript:
-            decoded_text = transcript["text"]
-            try:
-                detected_language_code = detect_langs(decoded_text)[0].lang
-                detected_language = LANGUAGES.get(detected_language_code, "Unknown")
-                detected_language = detected_language.capitalize()
-            except IndexError:
-                detected_language = "Unknown Language"
-            print("Detected language:", detected_language)
-            print("Decoded Text:", decoded_text)
-            return render_template(
-                "transcribe.html",
-                decoded_text=decoded_text,
-                detected_language=detected_language,
-            )
+        filename = secure_filename(
+            audio_file.filename
+        )  # Secure the filename before saving
+        audio_file.save(filename)
+        with open(filename, "rb") as audio:
+            transcript = openai.Audio.transcribe("whisper-1", audio)
+            if isinstance(transcript, dict) and "text" in transcript:
+                decoded_text = transcript["text"]
+                try:
+                    detected_language_code = detect_langs(decoded_text)[0].lang
+                    detected_language = LANGUAGES.get(detected_language_code, "Unknown")
+                    detected_language = detected_language.capitalize()
+                except IndexError:
+                    detected_language = "Unknown Language"
+                print("Detected language:", detected_language)
+                print("Decoded Text:", decoded_text)
+                return render_template(
+                    "transcribe.html",
+                    decoded_text=decoded_text,
+                    detected_language=detected_language,
+                )
 
-        elif decoded_text is not None:  # Check if the transcript exists
-            return decoded_text
+            elif decoded_text is not None:  # Check if the transcript exists
+                return decoded_text
 
-        else:
-            print("Transcription not found or incorrect format.")
-    # return render_template("tra.html")
+            else:
+                print("Transcription not found or incorrect format.")
+        # return render_template("tra.html")
 
 
 @app.route("/translate", methods=["GET", "POST"])
@@ -194,4 +204,4 @@ def translate_audio():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+     app.run(debug=True)
