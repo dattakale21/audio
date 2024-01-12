@@ -11,10 +11,7 @@ from pprint import pprint
 from dotenv import load_dotenv
 from pathlib import Path
 
-# from flask_frozen import Freezer
-
 app = Flask(__name__)
-# freezer = Freezer(app)
 
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
@@ -81,7 +78,6 @@ language_codes = {
     "Welsh": "cy",
 }
 
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -90,7 +86,6 @@ def index():
         elif "translate" in request.form:
             return render_template("translate.html")
     return render_template("index.html")
-
 
 @app.route("/transcribe", methods=["GET", "POST"])
 def transcribe_audio():
@@ -114,7 +109,7 @@ def transcribe_audio():
 
         filename = secure_filename(
             audio_file.filename
-        )  # Secure the filename before saving
+        )  
         audio_file.save(filename)
         with open(filename, "rb") as audio:
             transcript = openai.Audio.transcribe("whisper-1", audio)
@@ -139,7 +134,6 @@ def transcribe_audio():
 
             else:
                 print("Transcription not found or incorrect format.")
-        # return render_template("tra.html")
 
 
 @app.route("/translate", methods=["GET", "POST"])
@@ -194,14 +188,10 @@ def translate_audio():
             else:
                 return "Transcription failed or returned no data."
 
-            # except openai.error.OpenAIError as e:
-            #     return f"OpenAI API error: {str(e)}"
-            # except Exception as e:
-            #     return f"Error: {str(e)}"
-
             if selected_language not in language_codes.keys():
                 return "Invalid language selected."
 
-
 if __name__ == "__main__":
      app.run(debug=True)
+
+# Code By - Datta Kale

@@ -1,6 +1,0 @@
-whisper
-requests
-aiohttp
-openai
-express
-multer

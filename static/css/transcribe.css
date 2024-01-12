@@ -9,7 +9,6 @@
     scroll-behavior: smooth;
 }
 
-
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -75,7 +74,6 @@ textarea {
     align-items: center;
     font-weight: 5000;
     cursor: pointer;
-
 }
 
 textarea {
@@ -99,7 +97,6 @@ textarea {
     border-radius: 0.8rem;
     background-color: #0ef;
     width: 30vw;
-    /* Adjust the width as needed */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,7 +105,6 @@ textarea {
     cursor: pointer;
     padding: 0.5rem 1.9rem;
 }
-
 
 #upload {
     margin-right: 1rem;
@@ -142,16 +138,13 @@ footer h2 {
     padding: 0.2rem 0;
     letter-spacing: 0.2rem;
     word-spacing: 0.3rem;
-
 }
 
 #detect {
     font-size: 1.4rem;
-    /* white-space: nowrap; */
     margin: 0 auto;
     text-align: center;
 }
-
 
 @media (max-width:1440px) {
     html {
@@ -178,7 +171,6 @@ footer h2 {
         margin: 1.6rem auto;
         padding: 0.8rem 1rem;
         font-weight: bold;
-
     }
 
     main h1 {
@@ -190,7 +182,6 @@ footer h2 {
         padding: 0rem 27rem;
         font-size: 1.5rem;
         line-height: 1.6rem;
-
     }
 
     form {
@@ -206,22 +197,15 @@ footer h2 {
     }
 
     #detect {
-        /* width: 50vw; */
         margin: auto;
-        /* display: inline; */
     }
-
-
-
 }
 
 @media (max-width:1024px) {
     html {
         font-size: 60%;
     }
-
 }
-
 
 @media (max-width:769px) {
     html {
@@ -253,7 +237,6 @@ footer h2 {
     textarea {
         margin-top: 0.3rem;
     }
-
 }
 
 @media (max-width:555px) {
@@ -301,7 +284,6 @@ footer h2 {
         width: 70vw;
         padding: 0.2rem 0;
         font-weight: bold;
-
     }
 
     textarea {
@@ -311,15 +293,11 @@ footer h2 {
     #upload {
         margin-right: 1rem;
         padding: 0.5rem 0.7rem;
-        /* Adjust the padding as needed */
         margin: 1rem auto;
         font-size: 1rem;
-        /* Adjust the font size as needed */
         border-radius: 0.4rem;
-        /* Adjust the border radius as needed */
         background-color: #0ef;
         width: 70vw;
-        /* Adjust the width as needed */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -330,16 +308,36 @@ footer h2 {
 }
 
 @media (max-width:399px) {
+    html {
+        font-size: 30%;
+    }
+
     footer h2 {
         font-size: 70%;
     }
 
     header #title {
-        margin-top: 1rem;
+        margin-top: -1rem;
+        font-size: 250%;
+    }
+
+    main p {
+        font-size: 100%;
+    }
+
+    input[type="submit"] {
+        font-size: 2rem;
+        width: 70vw;
+        padding: 0.2rem 0;
+        font-weight: bold;
     }
 }
 
-@media (max-width:321px) {
+@media (max-width:333px) {
+    html {
+        font-size: 60%;
+    }
+
     header #title {
         font-size: 210%;
     }
@@ -353,6 +351,16 @@ footer h2 {
         font-size: 100%;
     }
 
+    .button-container button {
+        padding: 0.8rem 2.4rem;
+        margin: 0 2rem;
+    }
+}
+
+@media (max-width:289px) {
+    header #title {
+        font-size: 180%;
+    }
 }
 
 @media (max-width:412px) and (max-height:912px) {
@@ -361,7 +369,7 @@ footer h2 {
     }
 
     header #title {
-        margin-top: 3rem;
+        margin-top: 1rem;
     }
 
     header #logo {
@@ -371,7 +379,6 @@ footer h2 {
     main h1 {
         font-size: 120%;
         margin-top: -1.8rem;
-
     }
 
     #form {
@@ -384,19 +391,17 @@ footer h2 {
         padding: 0.6rem 0.9rem;
         font-size: 2rem;
         font-weight: bold;
-
     }
 
     #upload {
         width: 80vw;
         padding: 0.6rem 0.9rem;
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
 
     textarea {
         width: 80vw;
         height: 40vh;
-
     }
 
     footer h2 {
@@ -409,21 +414,32 @@ footer h2 {
 
     #detect {
         font-size: 1.3rem;
-        margin-left: -2.4rem;
+        margin-left: -4.5rem;
     }
 }
 
 @media (max-width:395px) and (max-height:916px) {
+    header #title {
+        font-size: 210%;
+    }
 
-header #title{
-    font-size: 210%;
+    main h1 {
+        font-size: 100%;
+    }
+
+    .button-container button {
+        padding: 0.8rem 2.4rem;
+    }
 }
 
-main h1{
-    font-size: 100%;
+@media (max-width:383px) and (max-height:913px) {
+    html {
+        font-size: 50%;
+    }
+
+    header #title {
+        margin-top: -1rem;
+    }
 }
 
-.button-container button{
-    padding:0.8rem 2.4rem;
-}
-}
+/* Code By - Datta Kale */
